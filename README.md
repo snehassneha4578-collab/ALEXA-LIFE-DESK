@@ -1,3 +1,5 @@
+[**🚀 OPEN DASHBOARD**](http://localhost:5173/)  |  [**View Repository**](https://github.com/snehassneha4578-collab/ALEXA-LIFE-DESK)
+
 System.Text.RegularExpressions.MatchEvaluator
 
 <img src="public/images/life-desk-cover.png" alt="ALEXA LIFE DESK cover" width="100%">

@@ -1,6 +1,6 @@
-[OPEN DASHBOARD](http://localhost:5173/) | [View Repository](https://github.com/snehassneha4578-collab/ALEXA-LIFE-DESK)
+[**OPEN LIVE DASHBOARD**](https://snehassneha4578-collab.github.io/ALEXA-LIFE-DESK/)
 
-<img src="public/images/life-desk-cover.png" alt="ALEXA LIFE DESK cover" width="100%">
+[![ALEXA LIFE DESK](public/images/alexa-life-desk.jpeg)](https://snehassneha4578-collab.github.io/ALEXA-LIFE-DESK/)
 
 # ✨ ALEXA LIFE DESK
 

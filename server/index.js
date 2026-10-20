@@ -29,6 +29,19 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  const allowedOrigins = String(process.env.FRONTEND_ORIGINS || "http://localhost:5173")
+    .split(",").map(value => value.trim()).filter(Boolean);
+  const origin = req.headers.origin;
+  res.setHeader("Vary", "Origin");
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  }
+  if (req.method === "OPTIONS") return res.sendStatus(204);
+  next();
+});
 app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
@@ -114,6 +127,6 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-app.listen(port, "127.0.0.1", () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`ALEXA+ LIFE DESK AI backend running at http://127.0.0.1:${port}`);
 });

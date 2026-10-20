@@ -6,7 +6,7 @@ import {
   Coffee, Zap, ChevronRight, MoreHorizontal, X
 } from "lucide-react";
 import "./App.css";
-
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8787").replace(/\/+$/, "");
 const initialTasks = [
   { id: 1, title: "Review machine learning notes", time: "09:30 AM", category: "Study", done: false, priority: "High" },
   { id: 2, title: "Complete internship learning module", time: "11:00 AM", category: "Career", done: false, priority: "High" },
@@ -108,7 +108,7 @@ function App() {
     } else answer = "";
     if (!answer) {
       try {
-        const response = await fetch("http://127.0.0.1:8787/api/chat", {
+        const response = await fetch(`${API_BASE_URL}/api/chat`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: command, provider: "bedrock" })
@@ -129,6 +129,8 @@ function App() {
     { name: "My tasks", icon: CheckSquare },
     { name: "Focus room", icon: Timer },
     { name: "Insights", icon: ChartNoAxesCombined },
+
+    { name: "Projects", icon: Sparkles },
     { name: "Settings", icon: Settings }
   ];
 
@@ -181,6 +183,29 @@ function App() {
 
         {page === "Insights" && <div className="page-content inner-page"><div className="page-intro"><span className="section-kicker">NOTICE YOUR PROGRESS</span><h1>Look how far <span>you’ve come.</span></h1><p>Progress isn’t always loud. Sometimes it’s just showing up.</p></div><div className="insight-grid"><div className="panel insight-card"><span className="soft-icon"><Target size={19}/></span><span className="section-kicker">TASK COMPLETION</span><div className="insight-number">{progress}%</div><div className="progress-track"><span style={{width:`${progress}%`}}/></div><p>{completed} completed out of {tasks.length} tasks.</p></div><div className="panel insight-card"><span className="soft-icon"><Flame size={19}/></span><span className="section-kicker">YOUR MOMENTUM</span><div className="insight-number">{completed}<small> wins</small></div><p>Each completed task is a small promise kept to yourself.</p></div></div></div>}
 
+        {page === "Projects" && <div className="page-content inner-page projects-page">
+  <div className="page-intro projects-intro">
+    <span className="section-kicker">YOUR BUILD UNIVERSE</span>
+    <h1>Ideas become <span>real things.</span></h1>
+    <p>Explore your AI, software, research, and hardware projects.</p>
+  </div>
+  <div className="project-feature-banner">
+    <div><span className="project-eyebrow">FEATURED WORKSPACE</span><h2>ALEXA LIFE DESK</h2><p>Your productivity workspace for tasks, focus, insights, and an assistant interface.</p><span className="project-status">IN DEVELOPMENT</span></div>
+    <img src="/images/alexa-life-desk.jpeg" alt="ALEXA LIFE DESK"/>
+  </div>
+  <div className="projects-section-heading"><div><span className="section-kicker">PROJECT COLLECTION</span><h2>Explore your work</h2></div><span className="project-count">8 PROJECTS</span></div>
+  <div className="project-card-grid">
+    <details className="project-card project-violet"><summary><img src="/images/life-desk-workspace.png" alt="VISUALIQ-TV" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">AI · COMMERCE</span><strong>VISUALIQ-TV</strong><span>Product intelligence with a smart-TV-inspired dashboard.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Product analysis, comparisons, decision support, trust, and price what-if workflows.</p></details>
+    <details className="project-card project-blue"><summary><img src="/images/life-desk-ai-assistant.png" alt="JARVIS-X" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">VOICE · AI</span><strong>JARVIS-X</strong><span>A voice-first personal assistant concept.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Planned multilingual interaction includes Kannada, English, Hindi, and mixed language.</p></details>
+    <details className="project-card project-cyan"><summary><img src="/images/life-desk-analytics.png" alt="NEXUS" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">AI · SAFETY</span><strong>NEXUS</strong><span>AI integration with safety gates.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Next.js application with Nemotron integration and safety-oriented design.</p></details>
+    <details className="project-card project-orange"><summary><img src="/images/life-desk-hero.png" alt="ASTRAFORGE-X" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">SPACE · RESEARCH</span><strong>ASTRAFORGE-X</strong><span>Space-focused project.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Project associated with NASA Space Apps 2026.</p></details>
+    <details className="project-card project-pink"><summary><img src="/images/life-desk-focus.png" alt="SENTINEL-X" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">ENGINEERING</span><strong>SENTINEL-X</strong><span>An engineering project with a broad capability roadmap.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Capability roadmap; individual capabilities require implementation verification.</p></details>
+    <details className="project-card project-green"><summary><img src="/images/life-desk-analytics.png" alt="NOVA-X Research" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">SPORTS · DATA</span><strong>NOVA-X Research</strong><span>Research for NFL Big Data Bowl 2027.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Reproducible experiments and condition-based research records.</p></details>
+    <details className="project-card project-indigo"><summary><img src="/images/life-desk-workspace.png" alt="CIRCUIT-TRACE X" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">HARDWARE + SOFTWARE</span><strong>CIRCUIT-TRACE X</strong><span>A hardware-and-software engineering project.</span><span className="project-expand">Explore details ↗</span></span></summary><p>Designed as a combined physical hardware and software engineering system.</p></details>
+    <details className="project-card project-gold"><summary><img src="/images/life-desk-cover.png" alt="Life Desk Workspace" loading="lazy"/><span className="project-card-content"><span className="project-card-tag">PRODUCTIVITY · WEB</span><strong>Life Desk Workspace</strong><span>The productivity dashboard itself.</span><span className="project-expand">Explore details ↗</span></span></summary><p>React and Vite interface with tasks, focus timer, insights, settings, and assistant.</p></details>
+  </div>
+  <div className="project-footer-note"><Sparkles size={18}/><p>Build consistently. Verify every feature. Let the work speak for itself.</p></div>
+</div>}
         {page === "Settings" && <div className="page-content inner-page">
           <div className="page-intro">
             <span className="section-kicker">MAKE THIS SPACE YOURS</span>

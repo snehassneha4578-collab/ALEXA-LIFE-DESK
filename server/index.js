@@ -1,4 +1,4 @@
-import "dotenv/config";
+﻿import "dotenv/config";
 import express from "express";
 import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
 import { GoogleGenAI } from "@google/genai";
@@ -80,7 +80,7 @@ app.post("/api/chat", async (req, res) => {
 
       const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       const result = await ai.models.generateContent({
-        model: process.env.GEMINI_MODEL_ID || "gemini-2.5-flash",
+        model: process.env.GEMINI_MODEL_ID || "gemini-3.8-flash",
         contents: message,
         config: {
           systemInstruction:

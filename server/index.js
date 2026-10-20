@@ -1,4 +1,4 @@
-﻿import "dotenv/config";
+import "dotenv/config";
 import express from "express";
 import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
 import { GoogleGenAI } from "@google/genai";
@@ -11,34 +11,25 @@ app.use(express.json({ limit: "1mb" }));
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  const allowed = new Set([
+  const defaultOrigins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:5175",
-    "http://127.0.0.1:5175"
-  ]);
+    "http://127.0.0.1:5175",
+    "https://snehassneha4578-collab.github.io"
+  ];
+  const configuredOrigins = String(process.env.FRONTEND_ORIGINS || "")
+    .split(",").map(value => value.trim()).filter(Boolean);
+  const allowedOrigins = new Set([...defaultOrigins, ...configuredOrigins]);
 
-  if (origin && allowed.has(origin)) {
+  if (origin && allowedOrigins.has(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Vary", "Origin");
   }
+
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  if (req.method === "OPTIONS") return res.sendStatus(204);
-  next();
-});
-
-app.use((req, res, next) => {
-  const allowedOrigins = String(process.env.FRONTEND_ORIGINS || "http://localhost:5173")
-    .split(",").map(value => value.trim()).filter(Boolean);
-  const origin = req.headers.origin;
-  res.setHeader("Vary", "Origin");
-  if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  }
   if (req.method === "OPTIONS") return res.sendStatus(204);
   next();
 });

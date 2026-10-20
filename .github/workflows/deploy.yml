@@ -1,4 +1,4 @@
-﻿name: Deploy dashboard to GitHub Pages
+name: Deploy dashboard to GitHub Pages
 
 on:
   push:
@@ -31,6 +31,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build dashboard
+        env:
+          VITE_API_BASE_URL: https://alexa-life-desk-api.onrender.com
         run: npm run build
       - name: Configure Pages
         uses: actions/configure-pages@v5

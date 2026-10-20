@@ -1,6 +1,4 @@
-[**🚀 OPEN DASHBOARD**](http://localhost:5173/)  |  [**View Repository**](https://github.com/snehassneha4578-collab/ALEXA-LIFE-DESK)
-
-System.Text.RegularExpressions.MatchEvaluator
+[OPEN DASHBOARD](http://localhost:5173/) | [View Repository](https://github.com/snehassneha4578-collab/ALEXA-LIFE-DESK)
 
 <img src="public/images/life-desk-cover.png" alt="ALEXA LIFE DESK cover" width="100%">
 
@@ -266,8 +264,6 @@ Please do not include secrets, personal credentials or unrelated backup files in
 No license has been specified in this repository yet. Check the repository for a license before reusing or redistributing its code.
 
 ---
-
-System.Text.RegularExpressions.MatchEvaluator
 
 ### Built with focus and a drive to improve everyday productivity ✨
 

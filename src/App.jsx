@@ -94,7 +94,15 @@ function App() {
     const prefix = taskPrefixes.find(p => lower.startsWith(p));
 
     if (prefix) answer = addTask(command.slice(prefix.length).trim());
-    else if (lower.includes("plan my day")) {
+    else if (lower.includes("which subjects") || lower.includes("what subjects") || lower.includes("what should i study")) {
+      const openTasks = tasks.filter(t => !t.done);
+      const studyTasks = openTasks.filter(t =>
+        /machine learning|internship|java|python|ece|exam|study|course|module/i.test(t.title)
+      );
+      answer = studyTasks.length
+        ? `Based on your current tasks, prioritize:\n${studyTasks.map((t, i) => `${i + 1}. ${t.title}`).join("\n")}\nStart with the highest-priority item and study one topic at a time.`
+        : "Start with your nearest academic deadline, then review your weakest subject and practice coding.";
+    } else if (lower.includes("plan my day")) {
       const next = tasks.find(t => !t.done && t.priority === "High") || tasks.find(t => !t.done);
       answer = `You have ${tasks.filter(t => !t.done).length} open tasks. Start with "${next?.title || "a small meaningful task"}".`;
     } else if (lower.includes("next priority") || lower.includes("what next")) {

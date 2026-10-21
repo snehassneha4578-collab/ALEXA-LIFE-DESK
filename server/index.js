@@ -86,7 +86,7 @@ app.post("/api/chat", async (req, res) => {
             .map(model => model.trim())
             .filter(Boolean)
         ])
-      ].slice(0, 3);
+      ].slice(0, 2);
 
       let lastGeminiError;
       for (const model of models) {

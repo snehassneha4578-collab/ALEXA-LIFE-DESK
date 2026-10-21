@@ -94,7 +94,13 @@ function App() {
     const prefix = taskPrefixes.find(p => lower.startsWith(p));
 
     if (prefix) answer = addTask(command.slice(prefix.length).trim());
-    else if (lower.includes("timetable") || lower.includes("set a schedule") || lower.includes("make me a schedule") || lower.includes("plan my study")) {
+    else if (lower.includes("start my day") || lower.includes("start the day") || lower.includes("help me start") || lower.includes("something to start my day")) {
+      const openTasks = tasks.filter(t => !t.done);
+      const next = openTasks.find(t => (t.priority || "").toLowerCase() === "high") || openTasks[0];
+      answer = next
+        ? `Good morning! 🌿 Let's start gently.\n\n**Your first step:** ${next.title}${next.time && next.time !== "Anytime" ? ` (${next.time})` : ""}.\n\nFocus on this one task first, then take a short break. You have ${openTasks.length} open tasks—there's no need to do everything at once.`
+        : "Good morning! 🌿 Take a breath, choose one small goal for today, and give yourself permission to start slowly. Add a task whenever you're ready.";
+    } else if (lower.includes("timetable") || lower.includes("set a schedule") || lower.includes("make me a schedule") || lower.includes("plan my study")) {
       const openTasks = tasks.filter(t => !t.done);
       const priorityRank = { high: 0, medium: 1, low: 2 };
       const orderedTasks = [...openTasks].sort((a, b) =>

@@ -69,16 +69,62 @@ app.post("/api/chat", async (req, res) => {
         });
       }
 
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const result = await ai.models.generateContent({
-        model: process.env.GEMINI_MODEL_ID || "gemini-3.8-flash",
-        contents: message,
-        config: {
-          systemInstruction:
-            "You are the helpful personal productivity assistant inside ALEXA+ LIFE DESK. Give clear, concise, practical answers. Never claim to have changed tasks or settings unless the application confirms it."
+      const ai = new GoogleGenAI({
+        apiKey: process.env.GEMINI_API_KEY,
+        httpOptions: {
+          timeout: 6500,
+          retryOptions: { attempts: 1 }
         }
       });
-      answer = result.text;
+
+      const primaryModel = process.env.GEMINI_MODEL_ID || "gemini-3.8-flash";
+      const models = [
+        ...new Set([
+          primaryModel,
+          ...(process.env.GEMINI_FALLBACK_MODELS || "gemini-3.6-flash,gemini-3.5-flash-lite")
+            .split(",")
+            .map(model => model.trim())
+            .filter(Boolean)
+        ])
+      ].slice(0, 3);
+
+      let lastGeminiError;
+      for (const model of models) {
+        try {
+          const result = await ai.models.generateContent({
+            model,
+            contents: message,
+            config: {
+              systemInstruction:
+                "You are the helpful personal productivity assistant inside ALEXA+ LIFE DESK. Give clear, concise, practical answers. Never claim to have changed tasks or settings unless the application confirms it."
+            }
+          });
+
+          if (result.text?.trim()) {
+            answer = result.text;
+            if (model !== primaryModel) {
+              console.warn(`Gemini fallback succeeded using model: ${model}`);
+            }
+            break;
+          }
+
+          lastGeminiError = new Error(`Gemini model ${model} returned an empty response.`);
+          console.warn(lastGeminiError.message);
+        } catch (error) {
+          lastGeminiError = error;
+          const status = Number(error?.status || error?.code);
+          console.error(`Gemini model ${model} failed with status ${status || "unknown"}: ${error?.message || "Unknown error"}`);
+
+          const retryable = [408, 429, 500, 502, 503, 504].includes(status);
+          if (!retryable) throw error;
+        }
+      }
+
+      if (!answer?.trim()) {
+        const error = new Error("All configured Gemini models failed or returned empty responses.");
+        error.cause = lastGeminiError;
+        throw error;
+      }
     } else if (provider === "bedrock") {
       if (!process.env.BEDROCK_MODEL_ID) {
         return res.status(503).json({

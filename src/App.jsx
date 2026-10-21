@@ -94,7 +94,17 @@ function App() {
     const prefix = taskPrefixes.find(p => lower.startsWith(p));
 
     if (prefix) answer = addTask(command.slice(prefix.length).trim());
-    else if (lower.includes("which subjects") || lower.includes("what subjects") || lower.includes("what should i study")) {
+    else if (lower.includes("timetable") || lower.includes("set a schedule") || lower.includes("make me a schedule") || lower.includes("plan my study")) {
+      const openTasks = tasks.filter(t => !t.done);
+      const priorityRank = { high: 0, medium: 1, low: 2 };
+      const orderedTasks = [...openTasks].sort((a, b) =>
+        (priorityRank[(a.priority || "").toLowerCase()] ?? 3) -
+        (priorityRank[(b.priority || "").toLowerCase()] ?? 3)
+      );
+      answer = orderedTasks.length
+        ? `## Your study timetable\n\n${orderedTasks.map((t, i) => `**${t.time && t.time !== "Anytime" ? t.time : ["9:00 AM", "11:00 AM", "2:00 PM", "4:00 PM", "6:00 PM"][i % 5]}** — ${t.title} (${t.priority || "Normal"} priority)`).join("\n\n")}\n\nStart with one task, take a short break between sessions, and adjust the times to fit your day.`
+        : "You have no open tasks right now. Add your subjects or study tasks, and I'll organize them into a timetable.";
+    } else if (lower.includes("which subjects") || lower.includes("what subjects") || lower.includes("what should i study")) {
       const openTasks = tasks.filter(t => !t.done);
       const studyTasks = openTasks.filter(t =>
         /machine learning|internship|java|python|ece|exam|study|course|module/i.test(t.title)

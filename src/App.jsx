@@ -6,7 +6,7 @@ import {
   Coffee, Zap, ChevronRight, MoreHorizontal, X
 } from "lucide-react";
 import "./App.css";
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "https://alexa-life-desk-api.onrender.com").replace(/\/+$/, "");
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
 const initialTasks = [
   { id: 1, title: "Review machine learning notes", time: "09:30 AM", category: "Study", done: false, priority: "High" },
   { id: 2, title: "Complete internship learning module", time: "11:00 AM", category: "Career", done: false, priority: "High" },
@@ -98,8 +98,8 @@ function App() {
       const openTasks = tasks.filter(t => !t.done);
       const next = openTasks.find(t => (t.priority || "").toLowerCase() === "high") || openTasks[0];
       answer = next
-        ? `Good morning! 🌿 Let's start gently.\n\n**Your first step:** ${next.title}${next.time && next.time !== "Anytime" ? ` (${next.time})` : ""}.\n\nFocus on this one task first, then take a short break. You have ${openTasks.length} open tasks—there's no need to do everything at once.`
-        : "Good morning! 🌿 Take a breath, choose one small goal for today, and give yourself permission to start slowly. Add a task whenever you're ready.";
+        ? `Good morning! ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â¿ Let's start gently.\n\n**Your first step:** ${next.title}${next.time && next.time !== "Anytime" ? ` (${next.time})` : ""}.\n\nFocus on this one task first, then take a short break. You have ${openTasks.length} open tasksÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Âthere's no need to do everything at once.`
+        : "Good morning! ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â¿ Take a breath, choose one small goal for today, and give yourself permission to start slowly. Add a task whenever you're ready.";
     } else if (lower.includes("timetable") || lower.includes("set a schedule") || lower.includes("make me a schedule") || lower.includes("plan my study")) {
       const openTasks = tasks.filter(t => !t.done);
       const priorityRank = { high: 0, medium: 1, low: 2 };
@@ -108,7 +108,7 @@ function App() {
         (priorityRank[(b.priority || "").toLowerCase()] ?? 3)
       );
       answer = orderedTasks.length
-        ? `## Your study timetable\n\n${orderedTasks.map((t, i) => `**${t.time && t.time !== "Anytime" ? t.time : ["9:00 AM", "11:00 AM", "2:00 PM", "4:00 PM", "6:00 PM"][i % 5]}** — ${t.title} (${t.priority || "Normal"} priority)`).join("\n\n")}\n\nStart with one task, take a short break between sessions, and adjust the times to fit your day.`
+        ? `## Your study timetable\n\n${orderedTasks.map((t, i) => `**${t.time && t.time !== "Anytime" ? t.time : ["9:00 AM", "11:00 AM", "2:00 PM", "4:00 PM", "6:00 PM"][i % 5]}** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â ${t.title} (${t.priority || "Normal"} priority)`).join("\n\n")}\n\nStart with one task, take a short break between sessions, and adjust the times to fit your day.`
         : "You have no open tasks right now. Add your subjects or study tasks, and I'll organize them into a timetable.";
     } else if (lower.includes("which subjects") || lower.includes("what subjects") || lower.includes("what should i study")) {
       const openTasks = tasks.filter(t => !t.done);
@@ -284,7 +284,7 @@ function App() {
         <footer className="footer"><span>Made for a little more breathing room <span className="footer-heart">*</span></span><span>YOUR LIFE DESK <span className="footer-separator">|</span> ONE DAY AT A TIME</span></footer>
       </main>
 
-      <aside className="assistant-sidebar"><div className="assistant-header"><div className="assistant-avatar"><Sparkles size={19}/></div><div><strong>Your little assistant</strong><small><span className="live-dot"/> HERE FOR YOU</small></div><span className="assistant-beta">BETA</span></div><div className="assistant-welcome"><span className="assistant-sparkle">*</span><strong>A little help goes a long way.</strong><p>Let's make today feel a little lighter.</p></div><div className="suggestion-label">A PLACE TO START</div><div className="suggestions"><button onClick={()=>respond("plan my day")}><CalendarDays size={16}/><span>Help me plan my day</span><ChevronRight size={15}/></button><button onClick={()=>respond("next priority")}><Target size={16}/><span>What should I do next?</span><ChevronRight size={15}/></button><button onClick={()=>respond("my progress")}><ChartNoAxesCombined size={16}/><span>Show my progress</span><ChevronRight size={15}/></button></div><div className="chat-area">{messages.map((m,i)=><div key={i} className={`chat-message ${m.from==="you"?"user-message":""}`}><span className="chat-badge">{m.from==="you"?"YOU":"*"}</span>{m.from === "you" ? <p>{m.text}</p> : <div className="markdown-response"><ReactMarkdown>{m.text.replace(/\\([*_``#>-])/g, "$1")}</ReactMarkdown></div>}</div>)}</div><form className="chat-form" onSubmit={e=>{e.preventDefault();respond(input);}}><input value={input} onChange={e=>setInput(e.target.value)} placeholder="Ask me anything..." aria-label="Message assistant"/><button type="submit" aria-label="Send message" disabled={isSending || !input.trim()}><Send size={17}/></button></form><div className="assistant-disclaimer"><span className="disclaimer-dot"/> Live AI assistant - Google Gemini</div></aside>
+      <aside className="assistant-sidebar"><div className="assistant-header"><div className="assistant-avatar"><Sparkles size={19}/></div><div><strong>Alexa+ Experience Simulator</strong><small><span className="live-dot"/> HERE FOR YOU</small></div><span className="assistant-beta">SIMULATION</span></div><div className="assistant-welcome"><span className="assistant-sparkle">*</span><strong>Your AI-powered personal desk.</strong><p>Try a voice-style request below. This is a simulated Alexa+ experience using the existing AI backend.</p></div><div className="suggestion-label">A PLACE TO START</div><div className="suggestions"><button onClick={()=>respond("plan my day")}><CalendarDays size={16}/><span>Help me plan my day</span><ChevronRight size={15}/></button><button onClick={()=>respond("next priority")}><Target size={16}/><span>What should I do next?</span><ChevronRight size={15}/></button><button onClick={()=>respond("my progress")}><ChartNoAxesCombined size={16}/><span>Show my progress</span><ChevronRight size={15}/></button></div><div className="chat-area">{messages.map((m,i)=><div key={i} className={`chat-message ${m.from==="you"?"user-message":""}`}><span className="chat-badge">{m.from==="you"?"YOU":"*"}</span>{m.from === "you" ? <p>{m.text}</p> : <div className="markdown-response"><ReactMarkdown>{m.text.replace(/\\([*_``#>-])/g, "$1")}</ReactMarkdown></div>}</div>)}</div><form className="chat-form" onSubmit={e=>{e.preventDefault();respond(input);}}><input value={input} onChange={e=>setInput(e.target.value)} placeholder="Ask me anything..." aria-label="Message assistant"/><button type="submit" aria-label="Send message" disabled={isSending || !input.trim()}><Send size={17}/></button></form><div className="assistant-disclaimer"><span className="disclaimer-dot"/> Alexa+ style simulation - existing AI backend</div></aside>
       {toast && <div className="toast"><CircleCheck size={17}/>{toast}<button onClick={()=>setToast("")} aria-label="Dismiss"><X size={15}/></button></div>}
     </div>
   );

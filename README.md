@@ -2,7 +2,7 @@
 
 [![ALEXA LIFE DESK](public/images/alexa-life-desk.jpeg)](https://snehassneha4578-collab.github.io/ALEXA-LIFE-DESK/)
 
-# âœ¨ ALEXA LIFE DESK
+# ✨ ALEXA LIFE DESK
 
 <a href="https://readme-typing-svg.demolab.com">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&duration=2800&pause=900&color=8B5CF6&center=true&vCenter=true&width=650&lines=Your+personal+productivity+workspace;Focus.+Organize.+Understand+your+day.;A+smarter+space+for+everyday+work." alt="Animated project tagline">
@@ -29,7 +29,7 @@
 
 ---
 
-## ðŸ“Œ Table of contents
+## 📌 Table of contents
 
 - [About the project](#-about-the-project)
 - [Features](#-features)
@@ -41,7 +41,7 @@
 
 ---
 
-## ðŸŒŸ About the project
+## 🌟 About the project
 
 **ALEXA LIFE DESK** is a web-based personal workspace project focused on bringing everyday productivity features together in one dashboard.
 
@@ -56,7 +56,7 @@ The project combines a React-based interface, visual design, and a separate serv
 
 ---
 
-## ðŸš€ Features
+## 🚀 Features
 
 Each image below is positioned alongside the feature it represents. The visuals are project assets and are not intended to imply that every illustrated capability has been independently tested.
 
@@ -64,7 +64,7 @@ Each image below is positioned alongside the feature it represents. The visuals 
 <tr>
 <td width="48%" valign="middle">
 
-### ðŸ¤– AI assistant
+### 🤖 AI assistant
 
 The assistant area is designed around a conversational, AI-oriented experience within the personal workspace.
 
@@ -88,7 +88,7 @@ The assistant area is designed around a conversational, AI-oriented experience w
 </td>
 <td width="52%" valign="middle">
 
-### ðŸŽ¯ Focus and productivity
+### 🎯 Focus and productivity
 
 A dedicated visual space for focus-oriented work and productivity activities.
 
@@ -102,7 +102,7 @@ A dedicated visual space for focus-oriented work and productivity activities.
 <tr>
 <td width="48%" valign="middle">
 
-### ðŸ“Š Analytics
+### 📊 Analytics
 
 The analytics area represents a visual way to present productivity-related information and progress.
 
@@ -126,7 +126,7 @@ The analytics area represents a visual way to present productivity-related infor
 </td>
 <td width="52%" valign="middle">
 
-### ðŸ—‚ï¸ Personal workspace
+### 🗂️ Personal workspace
 
 The workspace concept brings the dashboard's different areas into a consistent environment.
 
@@ -138,7 +138,7 @@ The workspace concept brings the dashboard's different areas into a consistent e
 
 ---
 
-## ðŸ› ï¸ Technology stack
+## 🛠️ Technology stack
 
 | Technology | Role |
 |---|---|
@@ -152,39 +152,39 @@ The project also includes application assets, icons, configuration files and a d
 
 ---
 
-## ðŸ—ºï¸ Project structure
+## 🗺️ Project structure
 
 ```text
 ALEXA-LIFE-DESK/
-â”œâ”€â”€ public/
-â”‚   â”œâ”€â”€ images/
-â”‚   â”‚   â”œâ”€â”€ life-desk-cover.png
-â”‚   â”‚   â”œâ”€â”€ life-desk-hero.png
-â”‚   â”‚   â”œâ”€â”€ life-desk-ai-assistant.png
-â”‚   â”‚   â”œâ”€â”€ life-desk-analytics.png
-â”‚   â”‚   â”œâ”€â”€ life-desk-focus.png
-â”‚   â”‚   â””â”€â”€ life-desk-workspace.png
-â”‚   â”œâ”€â”€ favicon.svg
-â”‚   â””â”€â”€ icons.svg
-â”œâ”€â”€ server/
-â”‚   â””â”€â”€ index.js
-â”œâ”€â”€ src/
-â”‚   â”œâ”€â”€ assets/
-â”‚   â”œâ”€â”€ App.jsx
-â”‚   â”œâ”€â”€ App.css
-â”‚   â”œâ”€â”€ index.css
-â”‚   â””â”€â”€ main.jsx
-â”œâ”€â”€ .env.example
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ index.html
-â”œâ”€â”€ package.json
-â”œâ”€â”€ package-lock.json
-â””â”€â”€ vite.config.js
+├── public/
+│   ├── images/
+│   │   ├── life-desk-cover.png
+│   │   ├── life-desk-hero.png
+│   │   ├── life-desk-ai-assistant.png
+│   │   ├── life-desk-analytics.png
+│   │   ├── life-desk-focus.png
+│   │   └── life-desk-workspace.png
+│   ├── favicon.svg
+│   └── icons.svg
+├── server/
+│   └── index.js
+├── src/
+│   ├── assets/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── .env.example
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+└── vite.config.js
 ```
 
 ---
 
-## ðŸ’» Getting started
+## 💻 Getting started
 
 ### Prerequisites
 
@@ -230,7 +230,7 @@ The frontend build and lint commands were successful in the earlier project chec
 
 ---
 
-## ðŸ§­ Roadmap
+## 🧭 Roadmap
 
 - [x] React and Vite application structure
 - [x] Dedicated project image assets
@@ -245,7 +245,7 @@ Roadmap items reflect project direction; unchecked items are not claimed as comp
 
 ---
 
-## ðŸ¤ Contributing
+## 🤝 Contributing
 
 Suggestions and improvements are welcome.
 
@@ -259,15 +259,15 @@ Please do not include secrets, personal credentials or unrelated backup files in
 
 ---
 
-## ðŸ“„ License
+## 📄 License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
 
 ---
 
-### Built with focus and a drive to improve everyday productivity âœ¨
+### Built with focus and a drive to improve everyday productivity ✨
 
-<a href="#-alexa-life-desk">â¬† Back to top</a>
+<a href="#-alexa-life-desk">⬆ Back to top</a>
 
 </div>
 

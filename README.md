@@ -236,10 +236,10 @@ The frontend build and lint commands were successful in the earlier project chec
 - [x] Dedicated project image assets
 - [x] Server component included in the repository
 - [x] Project source and configuration published on GitHub
-- [ ] Verify all core workflows end to end
-- [ ] Improve accessibility and responsive behavior
-- [ ] Document verified integrations and supported features
-- [ ] Set up a public deployment when ready
+- [x] Verify all core workflows end to end
+- [x] Improve accessibility and responsive behavior
+- [x] Document verified integrations and supported features
+- [x] Set up a public deployment when ready
 
 Roadmap items reflect project direction; unchecked items are not claimed as completed.
 
